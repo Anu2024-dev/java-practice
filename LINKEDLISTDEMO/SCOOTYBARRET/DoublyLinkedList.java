@@ -163,4 +163,134 @@ public class DoublyLinkedList {
         length--;
         return temp;
     }
+    public boolean PalindromeChecker(){
+        if(length==1) return true;
+        Node before=head;
+        Node after=tail;
+        for (int i=0;i<length/2;i++){
+            if(before.next!=after.prev){
+                return false;
+            }
+            before=before.next;
+            after=after.next;
+        }
+        return true;
+    }
+    public void reverse(){
+        Node curr=head;
+        Node temp=null;
+        while(curr!=null){
+            temp=curr.prev;
+            curr.prev=curr.next;
+            curr.next=temp;
+            curr=curr.prev;
+
+        }
+       temp=head;
+       head=tail;
+       tail=temp;
+    }
+    public void partitionList(int x){
+        if(head==null) return;
+            Node d1=new Node(0);
+            Node d2=new Node(0);
+            Node p1=d1;
+            Node p2=d2;
+            Node curr=head;
+            while(curr!=null){
+                if(curr.value<x){
+                    p1.next=curr;
+                    curr.prev=p1;
+                    p1=curr;
+                }else{
+                    p2.next=curr;
+                    curr.prev=p2;
+                    p2=curr;
+                }
+                curr=curr.next;
+            }
+            p2.next=null;
+            p1.next=d2.next;
+            if(d2.next!=null){
+                d2.next.prev=p1;
+            }
+            head=d1.next;
+            if(head != null){
+                head.prev=null;
+            }
+        
+    }
+    public void reverseBetween(int startIndex, int endIndex) {
+        
+        if(head == null || startIndex == endIndex || head.next == null) return;
+        
+        
+        Node dummy = new Node(0);
+        dummy.next = head;
+        head.prev = dummy;
+        
+        Node prev = dummy;
+        
+        for(int i=0; i<startIndex; i++){
+            prev = prev.next;
+        }
+        
+        Node curr = prev.next;
+        
+        for(int i=0; i<endIndex-startIndex; i++){
+            Node node_to_move = curr.next;
+            
+            curr.next = node_to_move.next;
+            
+            if(node_to_move.next != null){
+                
+            node_to_move.next.prev = curr;
+            
+            }
+            
+            node_to_move.next = prev.next;
+            prev.next.prev = node_to_move;
+            
+            prev.next = node_to_move;
+            node_to_move.prev = prev;
+            
+        }
+        
+        head = dummy.next;
+        head.prev = null;
+        
+    }
+     public void swapPairs(){
+        if(head == null || head.next == null) return;
+        
+        Node dummy = new Node(0);
+        dummy.next = head;
+        head.prev = dummy;
+        
+        Node prev = dummy;
+        
+        while(prev.next != null && prev.next.next != null){
+            Node first = head;
+            Node second = head.next;
+            
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+            
+            second.prev =prev;
+            first.prev = second;
+            
+            if(first.next != null){
+                first.next.prev = first;
+            }
+            
+            head = first.next;
+            prev = first;
+        }
+        
+        head = dummy.next;
+        if(head != null) head.prev = null;
+        
+    }
+    
 }

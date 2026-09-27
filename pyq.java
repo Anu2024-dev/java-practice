@@ -64,18 +64,17 @@ public class pyq {
         int ele = arr.length + 1;
         for (int i = 1; i <= ele; i++) {
             boolean flag = false;
+            
             for (int j = 0; j < arr.length; j++) {
                 if (i == arr[j])
                     flag = true;
             }
-
             if (flag == false) {
                 return i;
             }
         }
         return -1;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

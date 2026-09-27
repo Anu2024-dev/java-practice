@@ -132,9 +132,7 @@ public class array {
     // l++;
     // }
     // }
-    public static ArrayList<Integer>
-
-            fun(int[] arr, int k) {
+    public static ArrayList<Integer>fun(int[] arr, int k) {
         ArrayList<Integer> ar = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] < k) {

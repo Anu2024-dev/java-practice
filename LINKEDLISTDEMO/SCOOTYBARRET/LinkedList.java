@@ -311,4 +311,19 @@ public class LinkedList {
         }
         head = dummy.next;
     }
+    public void swapbtn(){
+        Node d1=new Node(0);
+        Node p1=d1;
+        d1.next=head;
+        Node first=head;
+        while(first!=null && first.next!=null){
+            Node second=first.next;
+            p1.next=second.next;
+            second.next=first.next;
+            first.next=second;
+            p1=first;
+            first=first.next;
+        }
+        head=d1.next;
+    }
 }
